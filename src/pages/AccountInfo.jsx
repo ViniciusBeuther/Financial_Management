@@ -1,5 +1,4 @@
 import { TextField, Typography } from "@mui/material";
-import TransactionList from "../Components/TransactionList";
 import { useState } from "react";
 
 const AccountInfo = () => {
@@ -23,7 +22,6 @@ const AccountInfo = () => {
           Gastos no PIX/Débito: ${balance.toLocaleString()}
         </Typography>
       </div>
-      <TransactionList />
     </>
   );
 };

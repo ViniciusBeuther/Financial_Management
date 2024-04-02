@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../API/Initialization";
+import { Typography } from "@mui/material";
 
 const TransactionList = () => {
   const [data, setData] = useState();
@@ -40,7 +41,10 @@ const TransactionList = () => {
   return (
     <div>
       {data ? (
-        <div className="flex flex-col w-[50%]">
+        <div className="flex flex-col mt-5">
+            <Typography variant="h5" className="text-terciary bg-primary p-2 font-bold">
+                Transações Recentes
+            </Typography>
           {data.map((transaction) => (
             <div
               className="flex items-center justify-between mt-2"

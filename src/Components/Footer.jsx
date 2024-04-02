@@ -1,9 +1,10 @@
-const Footer = () => {
-    return(
-        <footer>
-            FOOTER
-        </footer>
-    )
-}
+import { Fab } from "@mui/material";
 
-export default Footer
+const Footer = () => {
+  return (
+    <footer className="bg-transparent text-center">
+    </footer>
+  );
+};
+
+export default Footer;
