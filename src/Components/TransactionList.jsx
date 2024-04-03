@@ -47,15 +47,15 @@ const TransactionList = () => {
             </Typography>
           {data.map((transaction) => (
             <div
-              className="flex items-center justify-between mt-2"
+              className="flex items-center justify-between m-2 border-b-2 pb-2 border-primary"
               key={transaction.id}
             >
               <p>
-                {transaction.id} - {transaction.category} - R${" "}
+                {transaction.category} - R${" "}
                 {transaction.amount.toFixed(2)}
               </p>
               <button
-                className="bg-red-500 px-2 py-1 rounded-full"
+                className="bg-red-500 px-3 py-1 rounded-full"
                 onClick={(ev) => handleDelete(ev, transaction)}
               >
                 X
