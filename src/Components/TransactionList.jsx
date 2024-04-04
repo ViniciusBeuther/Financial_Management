@@ -1,3 +1,4 @@
+import { IoInformationCircleOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { supabase } from "../API/Initialization";
 import { Typography } from "@mui/material";
@@ -54,12 +55,22 @@ const TransactionList = () => {
                 {transaction.category} - R${" "}
                 {transaction.amount.toFixed(2)}
               </p>
-              <button
-                className="bg-red-500 px-3 py-1 rounded-full"
-                onClick={(ev) => handleDelete(ev, transaction)}
-              >
-                X
-              </button>
+                <span className="flex gap-2">
+                    <button
+                        className="bg-red-500 px-3 py-1 rounded-full hover:bg-red-600"
+                        onClick={(ev) => handleDelete(ev, transaction)}
+                    >
+                        X
+                    </button>
+
+                    <button
+                        className="bg-green-500 text-terciary px-3 py-1 rounded-full hover:bg-green-600"
+                        onClick={(ev) => handleDelete(ev, transaction)}
+                    >
+                        >
+                    </button>
+                </span>
+
             </div>
           ))}
         </div>
