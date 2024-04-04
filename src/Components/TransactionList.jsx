@@ -67,7 +67,7 @@ const TransactionList = () => {
                         className="bg-green-500 text-terciary px-3 py-1 rounded-full hover:bg-green-600"
                         onClick={(ev) => handleDelete(ev, transaction)}
                     >
-                        >
+                        Ver
                     </button>
                 </span>
 

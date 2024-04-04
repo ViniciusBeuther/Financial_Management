@@ -137,18 +137,34 @@ const AddFormScreen = () => {
 
   const [selectedValue, setSelectedValue] = useState("");
 
+  const [formData, setFormData] = useState({
+    category: '',
+    amount: 0.00,
+    date: '',
+    payment_form: '',
+    description: ''
+  });
+
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formInputs = Array.from(event.target.elements).filter(element =>
+      ['INPUT', 'SELECT', 'TEXTAREA'].includes(element.tagName)
+    );
+    formInputs.forEach((input) => console.log(input.value))
+  }
+
   return (
-    <section className="bg-secundary h-[100vh]">  
+    <section className="bg-secundary">  
       <article className="w-full p-2">
         <Typography className="text-primary p-2 text-center" variant="h4">
           Lançamentos
         </Typography>
 
-        <form action="submit" className="flex flex-col gap-2">
+        <form onSubmit={(ev) => handleSubmit(ev)} className="flex flex-col gap-2">
           <label className="text-primary text-xl">Categoria</label>
 
           <Select
@@ -219,7 +235,7 @@ const AddFormScreen = () => {
                 <input type="text" name="addform__textarea" id="addform__textarea" className="p-4 w-full rounded-md" />
             </div>
 
-            <Button variant="contained" size="large" color="success">Adicionar</Button>
+            <Button variant="contained" size="large" color="success" type="submit">Adicionar</Button>
         </form>
       </article>
     </section>
