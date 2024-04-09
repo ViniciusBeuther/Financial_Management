@@ -1,6 +1,6 @@
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { supabase } from "../API/Initialization";
+import { supabase } from "../../utils/supabase";
 import { Typography } from "@mui/material";
 
 const TransactionList = () => {

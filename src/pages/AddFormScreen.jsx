@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { FaBrazilianRealSign } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-import { supabase } from "../API/Initialization";
+import { supabase } from "../../utils/supabase";
 
 const AddFormScreen = () => {
   const [categories, setCategories] = useState([
@@ -168,23 +168,21 @@ const AddFormScreen = () => {
     ObjToInsert.description = document.getElementById("addform__textarea").value;
     
     async function insert(Obj){
-        try{                
+                       
             const { data, error } = await supabase
             .from('gerenciador_financeiro')
-            .insert([
-            { 
-                date: Obj.date,
-                amount: (Obj.amount * 1).toFixed(2),
-                category: Obj.category,
-                payment_method: Obj.payment_method,
-                description: Obj.description,
-                type: "expanse"
-            },
+            .insert([ 
+                {date: `${Obj.date}`},
+                {amount: `${(Obj.amount * 1).toFixed(2)}`},
+                {category: `${Obj.category}`},
+                {payment_method: `${Obj.payment_method}`},
+                {description: `${Obj.description}`},
+                {type: "expanse"},
             ])
             .select()
-                    
-        } catch(error){
-            console.log(error.message);
+            console.log(data)
+         if(error){
+            console.log(error);
         }
     }
 
