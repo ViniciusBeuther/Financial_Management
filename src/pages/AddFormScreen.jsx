@@ -11,6 +11,7 @@ import {
 import { FaBrazilianRealSign } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase";
+import { Link } from "react-router-dom";
 
 const AddFormScreen = () => {
   const [categories, setCategories] = useState([
@@ -150,62 +151,53 @@ const AddFormScreen = () => {
     setSelectedValue(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
+    // Prepare data to be inserted
+    const dataToInsert = {
+      category: selectedInput,
+      amount: parseFloat(document.getElementById("addform__amount").value),
+      date: document.getElementById("addform__date").value,
+      payment_method: selectedValue,
+      description: document.getElementById("addform__textarea").value,
+      type: "Saída"
+    };
+  
     try {
-      ObjToInsert.category =
-        document.getElementById("form__category").textContent;
+      const { data, error } = await supabase
+        .from("gerenciador_financeiro")
+        .insert([dataToInsert]);
+  
+      if (error) {
+        console.error("Error inserting data:", error);
+      } else {
+        console.log("Data inserted successfully:", data);
+      }
     } catch (error) {
-      console.log("Um probleminha, pequeno bug...");
+      console.error("Error inserting data:", error.message);
     }
-
-    // Pick and set up values to insert in DB
-    ObjToInsert.amount = document.getElementById("addform__amount").value;
-    ObjToInsert.amount = (ObjToInsert.amount * 1).toFixed(2);
-    ObjToInsert.date = document.getElementById("addform__date").value;
-    ObjToInsert.payment_form = selectedValue;
-    ObjToInsert.description = document.getElementById("addform__textarea").value;
-    
-    async function insert(Obj){
-                       
-            const { data, error } = await supabase
-            .from('gerenciador_financeiro')
-            .insert([ 
-                {date: `${Obj.date}`},
-                {amount: `${(Obj.amount * 1).toFixed(2)}`},
-                {category: `${Obj.category}`},
-                {payment_method: `${Obj.payment_method}`},
-                {description: `${Obj.description}`},
-                {type: "expanse"},
-            ])
-            .select()
-            console.log(data)
-         if(error){
-            console.log(error);
-        }
-    }
-
-    insert(Object)
-
-    //console.log(ObjToInsert);
-
-    // Reset Select and Radio fields from
-    setSelectedValue(""); // Limpa o RadioGroup
-    setSelectedInput(""); // Limpa o Select
-
-    // Clean text inputs
+  
+    // Reset form fields
+    setSelectedValue("");
+    setSelectedInput("");
     document.getElementById("addform__textarea").value = "";
     document.getElementById("addform__amount").value = "";
     document.getElementById("addform__date").value = "";
   };
+  
 
   return (
     <section className="bg-secundary">
       <article className="w-full p-2">
+        <div>
+        <Link to={"/"}>
+          Voltar
+        </Link>
         <Typography className="text-primary p-2 text-center" variant="h4">
           Lançamentos
         </Typography>
+        </div>
 
         <form
           onSubmit={(ev) => handleSubmit(ev)}
@@ -239,6 +231,8 @@ const AddFormScreen = () => {
               <FaBrazilianRealSign className="absolute left-5 text-green-500" />
               <input
                 type="number"
+                step={"0.01"}
+                pattern="[0-9]*" inputmode="numeric"
                 name="amount"
                 id="addform__amount"
                 placeholder="0.00"
