@@ -8,6 +8,7 @@ import {
   Select,
   Typography,
 } from "@mui/material";
+import { IoIosArrowBack } from "react-icons/io";
 import { FaBrazilianRealSign } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase";
@@ -16,141 +17,29 @@ import { Link } from "react-router-dom";
 const AddFormScreen = () => {
   const [categories, setCategories] = useState([
     {
-      item: "Alimentação no Trabalho",
+      item: "Salário",
       value: 1,
-      icon: "🥪",
+      icon: "💵",
     },
     {
-      item: "Alimentação para casa",
+      item: "Dividendos",
       value: 2,
-      icon: "🏠",
-    },
-    {
-      item: "Doces e besteiras",
-      value: 3,
-      icon: "🍬",
-    },
-    {
-      item: "Lanches para Faculdade",
-      value: 4,
-      icon: "🥤",
-    },
-    {
-      item: "Higiene Pessoal",
-      value: 5,
-      icon: "🧼",
-    },
-    {
-      item: "Remédios",
-      value: 6,
-      icon: "💊",
-    },
-    {
-      item: "Médico e exames",
-      value: 7,
-      icon: "⚕️",
-    },
-    {
-      item: "Investimentos na bolsa de valores",
-      value: 8,
-      icon: "💹",
-    },
-    {
-      item: "Desenvolvimento pessoal",
-      value: 9,
-      icon: "📘",
-    },
-    {
-      item: "Cursos",
-      value: 10,
-      icon: "🎓",
-    },
-    {
-      item: "Manutenções na moto",
-      value: 11,
-      icon: "🏍️",
-    },
-    {
-      item: "Gasolina",
-      value: 12,
-      icon: "⛽",
-    },
-    {
-      item: "Presentes",
-      value: 13,
-      icon: "🎁",
-    },
-    {
-      item: "Uber - Curitiba",
-      value: 14,
-      icon: "🚗",
-    },
-    {
-      item: "Alimentação - Curitiba",
-      value: 15,
-      icon: "🍽️",
-    },
-    {
-      item: "Passagem - Curitiba",
-      value: 16,
-      icon: "🎫",
-    },
-    {
-      item: "Amortização do Financiamento",
-      value: 17,
-      icon: "💳",
-    },
-    {
-      item: "Financiamento",
-      value: 18,
-      icon: "🏦",
-    },
-    {
-      item: "Conta de celular",
-      value: 19,
-      icon: "📱",
-    },
-    {
-      item: "Pagamento",
-      value: 20,
       icon: "💰",
     },
     {
-      item: "Encontro",
-      value: 21,
-      icon: "👫",
-    },
-    {
-      item: "Caixinhas",
-      value: 22,
-      icon: "🎁",
-    },
-    {
-      item: "Produtos e-commerce",
-      value: 23,
-      icon: "🛍️",
+      item: "Saldo devedor",
+      value: 3,
+      icon: "💳",
     },
   ]);
+
 
   const sortedCategories = categories.slice().sort((a, b) => {
     return a.item.localeCompare(b.item);
   });
-  const [selectedValue, setSelectedValue] = useState(""); // Select checked checkbox
   const [selectedInput, setSelectedInput] = useState(""); // Select the category value
 
-  // Object to insert in the DB
-  const ObjToInsert = {
-    category: "",
-    amount: 0.0,
-    date: "",
-    payment_form: "",
-    description: "",
-  };
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
+  // Handle form submit, set data in db and reset fields
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -159,9 +48,9 @@ const AddFormScreen = () => {
       category: selectedInput,
       amount: parseFloat(document.getElementById("addform__amount").value),
       date: document.getElementById("addform__date").value,
-      payment_method: selectedValue,
+      payment_method: "pix",
       description: document.getElementById("addform__textarea").value,
-      type: "Saída"
+      type: "E"
     };
   
     try {
@@ -190,13 +79,13 @@ const AddFormScreen = () => {
   return (
     <section className="bg-secundary">
       <article className="w-full p-2">
-        <div>
-        <Link to={"/"}>
-          Voltar
-        </Link>
-        <Typography className="text-primary p-2 text-center" variant="h4">
-          Lançamentos
-        </Typography>
+        <div className="flex items-center">
+          <Link to={"/"} className="p-3 bg-primary text-white rounded-full">
+            <IoIosArrowBack />
+          </Link>
+          <Typography className="text-primary p-2 text-center" variant="h4">
+            Receita
+          </Typography>
         </div>
 
         <form
@@ -232,7 +121,7 @@ const AddFormScreen = () => {
               <input
                 type="number"
                 step={"0.01"}
-                pattern="[0-9]*" inputmode="numeric"
+                pattern="[0-9]*" inputmode="decimal"
                 name="amount"
                 id="addform__amount"
                 placeholder="0.00"
@@ -241,7 +130,7 @@ const AddFormScreen = () => {
             </div>
           </div>
 
-          {/* Date + Radio group inputs */}
+          {/* Date */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-around text-primary">
             <article>
               <label className="text-primary text-xl">Data</label>
@@ -254,25 +143,6 @@ const AddFormScreen = () => {
                   className="p-4 rounded-lg w-full bg-white"
                 />
               </div>
-            </article>
-
-            {/* RADIO GROUP */}
-            <article className="mt-2">
-              <label className="text-primary text-xl">Tipo de pagamento</label>
-              <RadioGroup value={selectedValue} onChange={handleChange}>
-                <div className="text-lg">
-                  <Radio value="pix" />
-                  <label htmlFor="pix">PIX</label>
-                </div>
-                <div className="text-lg">
-                  <Radio value="debit" />
-                  <label htmlFor="debit">Débito</label>
-                </div>
-                <div className="text-lg">
-                  <Radio value="credit" />
-                  <label htmlFor="credit">Crédito</label>
-                </div>
-              </RadioGroup>
             </article>
           </div>
 

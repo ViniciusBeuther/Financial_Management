@@ -11,7 +11,7 @@ const ActionButtons = () => {
                 </button>
             </Link>
 
-            <Link to={"/add"}>
+            <Link to={"/expanse"}>
                 <button className="bg-red-400 rounded-full p-8">
                     <FaMinus className="text-terciary size-5" />
                 </button>
