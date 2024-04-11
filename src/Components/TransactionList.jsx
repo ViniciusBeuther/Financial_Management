@@ -2,9 +2,11 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const TransactionList = () => {
+const TransactionList = (props) => {
   const [data, setData] = useState();
+  let navigate = useNavigate();
 
   // get data from database
   useEffect(() => {
@@ -22,7 +24,7 @@ const TransactionList = () => {
     fetchData();
   }, []);
 
-  // remove row from database
+  // remove row from database and recalculate the account balance
   async function handleDelete(ev, transaction) {
     ev.preventDefault();
     try {
@@ -34,9 +36,19 @@ const TransactionList = () => {
         throw error;
       }
       setData(data.filter((item) => item.id !== transaction.id));
+      if(transaction.amount <= 0){
+        props.setBalance((props.balance * 1) + (transaction.amount * -1));
+      } else {
+        props.setBalance((props.balance * 1) - transaction.amount);
+      }
+      
     } catch (error) {
       console.error("Erro ao excluir transação:", error.message);
     }
+  }
+
+  async function handleView(ev, transaction) {
+    return navigate(`/details/${transaction.id}`, { replace: true })
   }
 
   return (
@@ -65,7 +77,7 @@ const TransactionList = () => {
 
                     <button
                         className="bg-green-500 text-terciary px-3 py-1 rounded-full hover:bg-green-600"
-                        onClick={(ev) => handleDelete(ev, transaction)}
+                        onClick={(ev) => handleView(ev, transaction)}
                     >
                         Ver
                     </button>

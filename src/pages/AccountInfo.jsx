@@ -1,8 +1,26 @@
-import { TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import TransactionList from "../Components/TransactionList";
+import ActionButtons from "../Components/ActionButtons";
 
-const AccountInfo = () => {
-  const [balance, setBalance] = useState(100);
+const AccountInfo = (props) => {
+  const [balance, setBalance] = useState(0.0);
+
+  // Function to calculate the actual balance
+  function calculateCurrentBalance() {
+    let totalBalance = 0.0;
+    props.database.forEach((record) => {
+      totalBalance += record.amount;
+    });
+    return totalBalance;
+  }
+
+  // Update balance when props.database changes
+  useEffect(() => {
+    if (props.database != null) {
+      setBalance(calculateCurrentBalance().toFixed(2));
+    }
+  }, [props.database]);
 
   return (
     <>
@@ -22,6 +40,11 @@ const AccountInfo = () => {
           Gastos no PIX/Débito: ${balance.toLocaleString()}
         </Typography>
       </div>
+      
+      {/* Action buttons */}
+      <ActionButtons />
+
+      <TransactionList setBalance={setBalance} balance={balance} />
     </>
   );
 };

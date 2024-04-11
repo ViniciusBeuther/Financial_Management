@@ -3,6 +3,7 @@ import HomeScreen from "./pages/HomeScreen";
 import AddFormScreen from "./pages/AddFormScreen";
 import ReportScreen from "./pages/ReportScreen";
 import ExpenseFormScreen from "./pages/ExpenseFormScreen";
+import TransactionDetails from "./pages/TransactionDetails";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         path: "/report",
         element: <ReportScreen />
     },
+    {
+        path: "/details/:transaction_id",
+        element: <TransactionDetails />
+    }
 ])
 
 export default router

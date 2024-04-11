@@ -149,7 +149,7 @@ const ExpenseFormScreen = () => {
         // Prepare data to be inserted
         const dataToInsert = {
           category: selectedInput,
-          amount: parseFloat(document.getElementById("addform__amount").value),
+          amount: parseFloat(document.getElementById("addform__amount").value) * -1,
           date: document.getElementById("addform__date").value,
           payment_method: selectedValue,
           description: document.getElementById("addform__textarea").value,
