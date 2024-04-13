@@ -39,7 +39,7 @@ const TransactionList = (props) => {
       if(transaction.amount <= 0){
         props.setBalance((props.balance * 1) + (transaction.amount * -1));
       } else {
-        props.setBalance((props.balance * 1) - transaction.amount);
+        props.setBalance(((props.balance * 1) - transaction.amount).toFixed(2));
       }
       
     } catch (error) {
@@ -63,10 +63,14 @@ const TransactionList = (props) => {
               className="flex items-center justify-between m-2 border-b-2 pb-2 border-primary"
               key={transaction.id}
             >
-              <p>
-                {transaction.category} - R${" "}
-                {transaction.amount.toFixed(2)}
-              </p>
+              <span className="flex">
+                <p className={'text-black'}>
+                  ({transaction.date}) - {transaction.category} - R${" "}
+                </p>
+                <p className={transaction.amount >= 0.00 ? 'text-green-500' : 'text-red-500'}>
+                  {transaction.amount.toFixed(2)}
+                </p>
+              </span>
                 <span className="flex gap-2">
                     <button
                         className="bg-red-500 px-3 py-1 rounded-full hover:bg-red-600"

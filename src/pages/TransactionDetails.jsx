@@ -33,7 +33,6 @@ const TransactionDetails = () => {
     return(
         <>
             
-            <div>Transaction</div>
         </>
     )
 }
