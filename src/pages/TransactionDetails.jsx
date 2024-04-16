@@ -32,7 +32,9 @@ const TransactionDetails = () => {
 
     return(
         <>
-            
+            <div>
+              
+            </div>
         </>
     )
 }
