@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../../utils/supabase";
+import { Typography } from "@mui/material";
 
 const TransactionDetails = () => {
     let { transaction_id } = useParams();
@@ -10,32 +11,35 @@ const TransactionDetails = () => {
         async function fetchData(){
             
             try {
-                const { dataFromDB, error } = await supabase
-                  .from("gerenciador_financeiro")
-                  .select("*")
+                  let { data: gerenciador_financeiro, error } = await supabase
+                  .from('gerenciador_financeiro')
+                  .select('*')      
                   .eq("id", `${transaction_id}`)
-                  setData(dataFromDB);
+                  setData(Object.assign({}, gerenciador_financeiro))
+        
                 if (error) {
-                  console.error("Error inserting data:", error);
+                  console.error("Error reading data:", error);
                 } else {
-                  console.log("Data inserted successfully:", data);
+                  console.log("Data read successfully:", data);
+                  console.log(data)
                 }
               } catch (error) {
-                console.error("Error inserting data:", error.message);
+                console.error("Error reading data:", error.message);
               }
         }
 
         fetchData();
         
-    }, [transaction_id])
+    }, [])
 
 
-    return(
+    return (
+      data !== undefined || data !== null ? (
         <>
-            <div>
-              
-            </div>
+          <Typography>Text</Typography>
+          {console.log(data)}
         </>
+      ) : <p>loading</p>
     )
 }
 
