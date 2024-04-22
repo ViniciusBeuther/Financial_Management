@@ -14,8 +14,8 @@ const TransactionDetails = () => {
                   let { data: gerenciador_financeiro, error } = await supabase
                   .from('gerenciador_financeiro')
                   .select('*')      
-                  .eq("id", `${transaction_id}`)
-                  setData(Object.assign({}, gerenciador_financeiro))
+                  .eq("id", `${transaction_id}`);
+                  setData(gerenciador_financeiro);
         
                 if (error) {
                   console.error("Error reading data:", error);
@@ -32,14 +32,25 @@ const TransactionDetails = () => {
         
     }, [])
 
+    // Verification to wait the BD's response
+    if ( !data ) {
+      return(<p>Carregando...</p>)
+    }
 
     return (
-      data !== undefined || data !== null ? (
+      (
         <>
-          <Typography>Text</Typography>
+          <div className="bg-white py-10 px-5 rounded-lg">
+            <Typography>{data[0].id}</Typography>
+            <Typography>{data[0].date}</Typography>
+            <Typography>{data[0].category}</Typography>
+            <Typography>{data[0].description}</Typography>
+            <Typography>{data[0].payment_method}</Typography>
+            <Typography>{data[0].amount.toFixed(2)}</Typography>
+          </div>
           {console.log(data)}
         </>
-      ) : <p>loading</p>
+      )
     )
 }
 
