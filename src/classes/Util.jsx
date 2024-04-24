@@ -7,6 +7,17 @@ class methods{
         return newDate;
     }
 
+    translatePaymentMethod( paymentMethod ) {
+        switch ( paymentMethod.toUpperCase() ){
+            case "CREDIT":
+                return "Crédito"
+            
+            case "DEBIT":
+                return "Débito"
+        } 
+
+    }
+
 }
 
 export default methods;

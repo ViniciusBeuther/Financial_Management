@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../../utils/supabase";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import methods from "../classes/Util";
 import BackButton from "../Components/BackButton";
 import { IoIosArrowBack } from "react-icons/io";
+import DialogDefault from "../Components/DialogDefault";
 
 const TransactionDetails = () => {
   const method = new methods();
@@ -40,23 +41,51 @@ const TransactionDetails = () => {
   }
 
   return (
-    <article>
-        <div className="bg-primary p-3">
-        <Link to={"/"} >
-            <IoIosArrowBack className="bg-secundary text-primary w-12 h-12 rounded-full" />
+    <article className="">
+      <div className="bg-primary p-3 flex items-center flex-start w-full">
+        <Link to={"/"}>
+          <IoIosArrowBack className="bg-secundary text-primary w-8 h-8 rounded-full mr-5" />
         </Link>
-        </div>
-      <section className="bg-terciary flex items-start justify-center flex-col">
-        <Typography variant="h3" className="text-center w-full text-primary"> Detalhes </Typography>
-        <Typography variant="h5"> <strong>Id:</strong> {data[0].id} </Typography>
-        <Typography variant="h5"><strong>Data:</strong> {method.formatDate(data[0].date)}</Typography>
-        <Typography variant="h5"><strong>Categoria:</strong> {data[0].category}</Typography>
-        <Typography variant="h5"><strong>Descrição:</strong> {data[0].description}</Typography>
-        <Typography variant="h5">
-          <strong>Método de Pagamento:</strong> {data[0].payment_method.toUpperCase()}
+          <Typography variant="h4" className="text-center text-secundary">
+          Detalhes
         </Typography>
-        <Typography variant="h5"><strong>Valor:</strong> R$ {data[0].amount.toFixed(2)}</Typography>
+      </div>
+      <section className="bg-terciary flex items-start justify-center flex-col px-2 py-5">
+
+        <Typography variant="h6">
+          {" "}
+          <strong>Id:</strong> {data[0].id}{" "}
+        </Typography>
+
+        <Typography variant="h6">
+          <strong>Data:</strong> {method.formatDate(data[0].date)}
+        </Typography>
+
+        <Typography variant="h6">
+          <strong>Categoria:</strong> {data[0].category}
+        </Typography>
+
+        <Typography variant="h6">
+          <strong>Descrição:</strong> {data[0].description}
+        </Typography>
+
+        <Typography variant="h6">
+          <strong> Método de Pagamento: </strong>{" "}
+          { method.translatePaymentMethod( data[0].payment_method ) }
+        </Typography>
+
+        <Typography variant="h6">
+          <strong>Valor:</strong> R$ {data[0].amount.toFixed(2)}
+        </Typography>
+
+        <article className="flex items-center justify-center w-full gap-5">
+          <Button color="error" variant="contained">Remover</Button>
+        <DialogDefault />
+        </article>
+
       </section>
+        
+
     </article>
   );
 };
