@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../utils/supabase";
 import { Button, Typography } from "@mui/material";
 import methods from "../classes/Util";
@@ -10,7 +10,26 @@ import DialogDefault from "../Components/DialogDefault";
 const TransactionDetails = () => {
   const method = new methods();
   let { transaction_id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState();
+
+// remove row from database and recalculate the account balance
+async function handleDelete(ev) {
+  ev.preventDefault();
+  try {
+    let { error } = await supabase
+      .from("gerenciador_financeiro")
+      .delete()
+      .eq("id", transaction_id);
+    if (error) {
+      throw error;
+    }
+    return navigate(`/`, { replace: true })
+
+  } catch (error) {
+    console.error("Erro ao excluir transação:", error.message);
+  }
+}
 
   useEffect(() => {
     async function fetchData() {
@@ -79,8 +98,10 @@ const TransactionDetails = () => {
         </Typography>
 
         <article className="flex items-center justify-center w-full gap-5">
-          <Button color="error" variant="contained">Remover</Button>
-        <DialogDefault />
+          <Button color="error" variant="contained" onClick={(ev) => handleDelete(ev)}>Remover</Button>
+        
+        
+        <DialogDefault data={ data } />
         </article>
 
       </section>
