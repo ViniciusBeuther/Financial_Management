@@ -33,31 +33,32 @@ const AddFormScreen = () => {
     },
   ]);
 
+  const [selectedInput, setSelectedInput] = useState(""); 
+  const [amount, setAmount] = useState(""); 
+  const [date, setDate] = useState(""); 
+  const [description, setDescription] = useState(""); 
 
   const sortedCategories = categories.slice().sort((a, b) => {
     return a.item.localeCompare(b.item);
   });
-  const [selectedInput, setSelectedInput] = useState(""); // Select the category value
 
   // Handle form submit, set data in db and reset fields
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Prepare data to be inserted
     const dataToInsert = {
       category: selectedInput,
-      amount: parseFloat(document.getElementById("addform__amount").value),
-      date: document.getElementById("addform__date").value,
+      amount: parseFloat(amount),
+      date: date,
       payment_method: "pix",
-      description: document.getElementById("addform__textarea").value,
-      type: "E"
+      description: description,
+      type: "E",
     };
-  
+
     try {
-      const { data, error } = await supabase
-        .from("gerenciador_financeiro")
-        .insert([dataToInsert]);
-  
+      const { data, error } = await supabase.from("gerenciador_financeiro").insert([dataToInsert]);
+
       if (error) {
         console.error("Error inserting data:", error);
       } else {
@@ -65,16 +66,15 @@ const AddFormScreen = () => {
       }
     } catch (error) {
       console.error("Error inserting data:", error.message);
+      alert("Algo deu errado!");
     }
-  
+
     // Reset form fields
-    setSelectedValue("");
     setSelectedInput("");
-    document.getElementById("addform__textarea").value = "";
-    document.getElementById("addform__amount").value = "";
-    document.getElementById("addform__date").value = "";
+    setAmount("");
+    setDate("");
+    setDescription("");
   };
-  
 
   return (
     <section className="bg-secundary">
@@ -88,10 +88,7 @@ const AddFormScreen = () => {
           </Typography>
         </div>
 
-        <form
-          onSubmit={(ev) => handleSubmit(ev)}
-          className="flex flex-col gap-2"
-        >
+        <form onSubmit={(ev) => handleSubmit(ev)} className="flex flex-col gap-2">
           <label className="text-primary text-xl">Categoria</label>
 
           <Select
@@ -103,11 +100,7 @@ const AddFormScreen = () => {
           >
             {/* Menu Items, using the sorted categories */}
             {sortedCategories.map((obj, index) => (
-              <MenuItem
-                key={index}
-                value={obj.item}
-                id={`addform__menuitem-${index}`}
-              >
+              <MenuItem key={index} value={obj.item} id={`addform__menuitem-${index}`}>
                 {obj.icon} {obj.item}
               </MenuItem>
             ))}
@@ -121,11 +114,14 @@ const AddFormScreen = () => {
               <input
                 type="number"
                 step={"0.01"}
-                pattern="[0-9]*" inputmode="decimal"
+                pattern="[0-9]*"
+                inputmode="decimal"
                 name="amount"
-                id="addform__amount"
+                id="form__amount"
                 placeholder="0.00"
                 className="pl-8 pr-2 py-4 rounded-lg w-full bg-white"
+                value={amount}
+                onChange={(ev) => setAmount(ev.target.value)}
               />
             </div>
           </div>
@@ -138,9 +134,11 @@ const AddFormScreen = () => {
                 <input
                   type="date"
                   name="amount"
-                  id="addform__date"
+                  id="form__date"
                   placeholder="0.00"
                   className="p-4 rounded-lg w-full bg-white"
+                  value={date}
+                  onChange={(ev) => setDate(ev.target.value)}
                 />
               </div>
             </article>
@@ -151,18 +149,15 @@ const AddFormScreen = () => {
             <label className="text-primary text-xl">Descrição (opcional)</label>
             <input
               type="text"
-              name="addform__textarea"
-              id="addform__textarea"
+              name="form__textarea"
+              id="form__textarea"
               className="p-4 w-full rounded-md"
+              value={description}
+              onChange={(ev) => setDescription(ev.target.value)}
             />
           </div>
 
-          <Button
-            variant="contained"
-            size="large"
-            color="success"
-            type="submit"
-          >
+          <Button variant="contained" size="large" color="success" type="submit">
             Adicionar
           </Button>
         </form>

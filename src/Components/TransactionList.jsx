@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import expanseIcon from "../../assets/icons/expanse arrow.svg"
+import incomeIcon from "../../assets/icons/income arrow.svg"
+import detailsIcon from "../../assets/icons/details arrow icon.svg"
 
 const TransactionList = (props) => {
   const [data, setData] = useState();
@@ -24,66 +27,45 @@ const TransactionList = (props) => {
     fetchData();
   }, []);
 
-  // remove row from database and recalculate the account balance
-  async function handleDelete(ev, transaction) {
-    ev.preventDefault();
-    try {
-      let { error } = await supabase
-        .from("gerenciador_financeiro")
-        .delete()
-        .eq("id", transaction.id);
-      if (error) {
-        throw error;
-      }
-      setData(data.filter((item) => item.id !== transaction.id));
-      if(transaction.amount <= 0){
-        props.setBalance((props.balance * 1) + (transaction.amount * -1));
-      } else {
-        props.setBalance(((props.balance * 1) - transaction.amount).toFixed(2));
-      }
-      
-    } catch (error) {
-      console.error("Erro ao excluir transação:", error.message);
-    }
-  }
-
   async function handleView(ev, transaction) {
     return navigate(`/details/${transaction.id}`, { replace: true })
   }
+  function verifyIcon( type ) {
+    if( type == 'S' ){
+      return expanseIcon;
+    } else { return incomeIcon }
+  } 
 
   return (
-    <div>
+    <div className="bg-white mt-5">
       {data ? (
-        <div className="flex flex-col mt-5">
+        <div className="flex flex-col">
             <Typography variant="h5" className="text-terciary bg-primary p-2 font-bold">
                 Transações Recentes
             </Typography>
           {data.map((transaction) => (
+            
             <div
               className="flex items-center justify-between m-2 border-b-2 pb-2 border-primary"
               key={transaction.id}
             >
-              <span className="flex">
+              <span className="flex items-center">
+
+                <img src={verifyIcon( transaction.type )} alt="icon" width={32} height={32} className="mr-2" />
+
                 <p className={'text-black'}>
-                  ({transaction.date}) - {transaction.category} - R${" "}
+                  {transaction.category} - R${" "}
                 </p>
-                <p className={transaction.amount >= 0.00 ? 'text-green-500' : 'text-red-500'}>
+                <p className={transaction.amount >= 0.00 ? 'text-green-500' : 'text-red-400'}>
                   {transaction.amount.toFixed(2)}
                 </p>
               </span>
                 <span className="flex gap-2">
                     <button
-                        className="bg-red-500 px-3 py-1 rounded-full hover:bg-red-600"
-                        onClick={(ev) => handleDelete(ev, transaction)}
-                    >
-                        X
-                    </button>
-
-                    <button
-                        className="bg-green-500 text-terciary px-3 py-1 rounded-full hover:bg-green-600"
+                        className="bg-green-400 text-terciary px-3 py-1 rounded-full hover:bg-green-500"
                         onClick={(ev) => handleView(ev, transaction)}
                     >
-                        Ver
+                        <img src={detailsIcon} alt="right_arrow" width={24} height={24} />
                     </button>
                 </span>
 
