@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import TransactionList from "../Components/TransactionList";
 import ActionButtons from "../Components/ActionButtons";
+import moneyIcon from "../../assets/icons/money icon.svg"
 
 const AccountInfo = (props) => {
   const [balance, setBalance] = useState(0.0);
@@ -24,20 +25,28 @@ const AccountInfo = (props) => {
 
   return (
     <>
-      <div className="text-center flex items-center justify-center mt-5">
-        <Typography
-          variant="h3"
-          className="accountInfo__container_balance bg-terciary text-primary rounded-full py-3 px-5"
-        >
-          $ {balance.toLocaleString()}
-        </Typography>
+      <div className="text-center flex items-center justify-start gap-5 mt-5 bg-white m-2 p-2 rounded-lg">
+        <div className="bg-green-300 flex items-center justify-center p-3 rounded-lg">
+          <img src={moneyIcon} alt="money-icon" width={32} height={32} className="" />
+        </div>
+        <div className="flex items-start flex-col">
+          <Typography>Saldo:</Typography>
+          <Typography
+            variant="h5"
+            className="accountInfo__container_balance text-primary tracking-tight"
+          >
+            ${balance.toLocaleString()}
+          </Typography>
+        </div>
       </div>
 
-      <div className="mt-5 flex-col text-center  text-primary">
-        <Typography variant="h6">
-          Fatura do Mês: ${balance.toLocaleString()}
-          <br />
-          Gastos no PIX/Débito: ${balance.toLocaleString()}
+      <div className="text-center flex items-start justify-center flex-col bg-white m-2 p-2 rounded-lg">
+        <Typography variant="h6">Fatura:</Typography>
+        <Typography
+          variant="h3"
+          className="accountInfo__container_balance text-primary tracking-tight"
+        >
+          ${balance.toLocaleString()}
         </Typography>
       </div>
       

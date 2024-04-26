@@ -46,23 +46,25 @@ const TransactionList = (props) => {
           {data.map((transaction) => (
             
             <div
-              className="flex items-center justify-between m-2 border-b-2 pb-2 border-primary"
+              className="flex items-center justify-between border-b-2 pb-2 border-primary text-sm"
               key={transaction.id}
             >
-              <span className="flex items-center">
+              <span className="flex items-center m-2">
+                <img src={verifyIcon( transaction.type )} alt="icon" width={24} height={24} className="mr-2" />
 
-                <img src={verifyIcon( transaction.type )} alt="icon" width={32} height={32} className="mr-2" />
+                <article className="flex flex-col items-start ">
+                  <p className={'text-black'}>
+                    {transaction.category}
+                  </p>
+                  <p className={transaction.amount >= 0.00 ? 'text-green-500' : 'text-red-400'}>
+                    R$ {transaction.amount.toFixed(2)}
+                  </p>
+                </article>
 
-                <p className={'text-black'}>
-                  {transaction.category} - R${" "}
-                </p>
-                <p className={transaction.amount >= 0.00 ? 'text-green-500' : 'text-red-400'}>
-                  {transaction.amount.toFixed(2)}
-                </p>
               </span>
                 <span className="flex gap-2">
                     <button
-                        className="bg-green-400 text-terciary px-3 py-1 rounded-full hover:bg-green-500"
+                        className="bg-green-400 text-terciary px-2 py-1 rounded-full hover:bg-green-500 mr-2"
                         onClick={(ev) => handleView(ev, transaction)}
                     >
                         <img src={detailsIcon} alt="right_arrow" width={24} height={24} />
