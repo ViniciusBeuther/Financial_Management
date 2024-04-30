@@ -32,7 +32,7 @@ const AccountInfo = (props) => {
         <div className="flex items-start flex-col">
           <Typography>Saldo:</Typography>
           <Typography
-            variant="h5"
+            variant="h5" 
             className="accountInfo__container_balance text-primary tracking-tight"
           >
             ${balance.toLocaleString()}
