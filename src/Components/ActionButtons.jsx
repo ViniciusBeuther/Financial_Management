@@ -1,27 +1,34 @@
 import { Link } from "react-router-dom"
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { HiOutlineDocumentReport } from "react-icons/hi";
+import closeMonthIcon from "../../assets/icons/close month icon.svg";
+import methods from "../classes/Util";
+import DateMethods from "../classes/Date";
 
 const ActionButtons = () => {
     return(
         <section className="flex items-center justify-center gap-3 mt-5">
             <Link to={"/add"}>
-                <button className="bg-green-400 rounded-full p-8">
+                <button className="bg-purple-400 px-6 py-4 rounded-md shadow-sm">
                     <FaPlus className="text-terciary size-5" />
                 </button>
             </Link>
 
             <Link to={"/expanse"}>
-                <button className="bg-red-400 rounded-full p-8">
+                <button className="bg-gray-950 px-6 py-4 rounded-md shadow-sm">
                     <FaMinus className="text-terciary size-5" />
                 </button>
             </Link>
 
             <Link to={"/report"}>
-                <button className="bg-primary rounded-full p-8">
+                <button className="bg-purple-800 px-6 py-4 rounded-md shadow-sm">
                     <HiOutlineDocumentReport  className="text-terciary size-5" />
                 </button>
             </Link>
+
+            <button className="bg-red-800 rounded-md shadow-sm px-6 py-4 text-white text-sm">
+                    Fechar mês
+                </button>
         </section>
     )
 }

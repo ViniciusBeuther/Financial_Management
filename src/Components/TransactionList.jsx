@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 import expanseIcon from "../../assets/icons/expanse arrow.svg"
 import incomeIcon from "../../assets/icons/income arrow.svg"
 import detailsIcon from "../../assets/icons/details arrow icon.svg"
+import DateMethods from "../classes/Date";
 
 const TransactionList = (props) => {
   const [data, setData] = useState();
   let navigate = useNavigate();
+  const dateMethods = new DateMethods();
+    //console.log( dateMethods.getToday() );
 
   // get data from database
   useEffect(() => {
@@ -37,18 +40,19 @@ const TransactionList = (props) => {
   } 
 
   return (
-    <div className="bg-white mt-5">
+    <div className="mt-5 h-full rounded-t-2xl bg-white">
       {data ? (
-        <div className="flex flex-col">
-            <Typography variant="h5" className="text-terciary bg-primary p-2 font-bold">
+        <div className="flex flex-col ">
+            <Typography variant="h5" className="text-black p-2 font-bold rounded-t-2xl">
                 Transações Recentes
             </Typography>
+            <Typography>{dateMethods.getMonthFrom(dateMethods.getToday().month)}</Typography>
           {data.map((transaction) => (
-            
             <div
-              className="flex items-center justify-between border-b-2 pb-2 border-primary text-sm"
-              key={transaction.id}
+            className="flex items-center justify-between border-b-2 pb-2 border-primary text-sm"
+            key={transaction.id}
             >
+              
               <span className="flex items-center m-2">
                 <img src={verifyIcon( transaction.type )} alt="icon" width={24} height={24} className="mr-2" />
 
