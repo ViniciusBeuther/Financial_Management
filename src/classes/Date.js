@@ -19,7 +19,7 @@ class DateMethods {
             }
             
         } catch ( error ) {
-            console.log(dayjs())
+            
             return console.log( "Algo deu errado..." )
         }
     }
