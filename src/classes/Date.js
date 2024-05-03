@@ -15,7 +15,7 @@ class DateMethods {
             const regexPattern = /\d{4}-(\d+)-\d+/;
             if ( date.match( regexPattern ) ) {
                 const month = date.replace( regexPattern, "$1" )
-                
+                return month;
             }
             
         } catch ( error ) {
