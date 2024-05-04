@@ -26,24 +26,24 @@ const AccountInfo = (props) => {
 
   return (
     <>
-      <article className="flex items-center justify-between">
-          <div className="text-center flex items-center justify-start gap-2 w-full bg-white m-2 p-2 rounded-lg">
-            <div className="bg-green-300 flex items-center justify-center p-3 rounded-lg">
+      <article className="flex items-center justify-between text-solidGray-100">
+          <div className="text-center flex items-center justify-start gap-2 w-full bg-solidPurple-300 border-solidPurple-700 border-s-2 m-2 p-2 rounded-lg">
+            <div className="bg-solidPurple-500 flex items-center justify-center p-3 rounded-lg">
               <img src={moneyIcon} alt="money-icon" width={32} height={32} className="" />
             </div>
             <div className="flex items-start flex-col">
               <Typography><strong>Saldo:</strong></Typography>
               <Typography
                 variant="h5" 
-                className="accountInfo__container_balance text-primary tracking-tight"
+                className="accountInfo__container_balance text-solidGray-100 tracking-tight"
               >
                 ${balance.toLocaleString()}
               </Typography>
             </div>
           </div>
 
-          <div className="text-center flex items-center justify-start w-full bg-white m-2 p-2 rounded-lg">
-            <div className="bg-yellow-300 flex items-center justify-center p-3 rounded-lg">
+          <div className="text-center flex items-center justify-start w-full bg-solidPurple-300 border-solidPurple-700 border-s-2 m-2 p-2 rounded-lg">
+            <div className="bg-solidPurple-500 flex items-center justify-center p-3 rounded-lg">
               <img src={creditCardIcon} alt="credit-card-icon" width={32} height={32} />
             </div>
 
@@ -51,7 +51,7 @@ const AccountInfo = (props) => {
               <Typography><strong>Fatura:</strong></Typography>
               <Typography
                 variant="h5"
-                className="accountInfo__container_balance text-primary tracking-tight"
+                className="accountInfo__container_balance text-solidGray-100 tracking-tight"
               >
                 ${balance.toLocaleString()}
               </Typography>

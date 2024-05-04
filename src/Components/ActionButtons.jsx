@@ -9,20 +9,20 @@ const ActionButtons = () => {
     return(
         <section className="flex items-center justify-center gap-3 mt-5">
             <Link to={"/add"}>
-                <button className="bg-purple-400 px-6 py-4 rounded-md shadow-sm">
+                <button className="bg-solidPurple-400 px-6 py-4 rounded-md shadow-sm">
                     <FaPlus className="text-terciary size-5" />
                 </button>
             </Link>
 
             <Link to={"/expanse"}>
-                <button className="bg-gray-950 px-6 py-4 rounded-md shadow-sm">
+                <button className="bg-red-500 px-6 py-4 rounded-md shadow-sm">
                     <FaMinus className="text-terciary size-5" />
                 </button>
             </Link>
 
             <Link to={"/report"}>
-                <button className="bg-purple-800 px-6 py-4 rounded-md shadow-sm">
-                    <HiOutlineDocumentReport  className="text-terciary size-5" />
+                <button className="bg-solidPurple-800 px-6 py-4 rounded-md shadow-sm">
+                    <HiOutlineDocumentReport  className="text-solidGray-100 size-5" />
                 </button>
             </Link>
 
