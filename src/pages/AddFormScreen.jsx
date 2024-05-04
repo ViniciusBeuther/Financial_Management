@@ -54,6 +54,7 @@ const AddFormScreen = () => {
       payment_method: "pix",
       description: description,
       type: "E",
+      emoji: categories.find((category) => category.item == selectedInput).icon,
     };
 
     try {

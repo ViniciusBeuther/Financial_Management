@@ -22,7 +22,7 @@ body, html{
 }
 
 .grayGradient{
-  background-image: linear-gradient(to top, #6c6c6c, #7e7e7e, #919191, #a4a4a4, #b7b7b7);
+  background-image: linear-gradient(to top, #641b6e, #5f1e68, #5a2063, #56225d, #512458);
 }
 
 .transactionCard {

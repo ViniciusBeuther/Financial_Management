@@ -153,7 +153,8 @@ const ExpenseFormScreen = () => {
           date: document.getElementById("addform__date").value,
           payment_method: selectedValue,
           description: document.getElementById("addform__textarea").value,
-          type: "S"
+          type: "S",
+          emoji: categories.find((category) => category.item == selectedInput).icon
         };
       
         try {

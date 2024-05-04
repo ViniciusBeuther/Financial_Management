@@ -75,15 +75,11 @@ const TransactionList = (props) => {
             <div
               className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm"
               key={transaction.id}
-            >
+            > 
               <span className="flex items-center m-2">
-                <img
-                  src={verifyIcon(transaction.type)}
-                  alt="icon"
-                  width={24}
-                  height={24}
-                  className="mr-2"
-                />
+                <p className="text-2xl mr-2">
+                  { transaction.emoji }
+                </p>
 
                 <article className="flex flex-col items-start ">
                   <p className={"text-black"}>{transaction.category}</p>
