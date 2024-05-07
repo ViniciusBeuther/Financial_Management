@@ -53,28 +53,25 @@ const TransactionList = (props) => {
     return navigate(`/details/${transaction.id}`, { replace: true });
   }
 
-  function verifyIcon(type) {
-    return type === "S" ? expanseIcon : incomeIcon;
-  }
-
   return (
-    <div className="mt-5 h-full rounded-t-2xl grayGradient">
+    <div className="mt-5 h-full rounded-t-2xl darkPurpleGradient">
       {data ? (
         <div className="flex flex-col">
           <Typography
             variant="h5"
-            className="text-solidGray-1000 text-center px-2 pt-2 font-bold rounded-t-2xl"
+            className="text-solidPurple-100 text-center px-2 pt-2 font-bold rounded-t-2xl"
           >
             Transações Recentes
           </Typography>
-          <Typography variant="h6" className="text-center text-solidGray-800 pt-[-5px]">
+          <Typography variant="h6" className="text-center text-solidPurple-200 pt-[-5px]">
             {dateMethods.getMonthFrom(dateMethods.getToday().month)},{" "}
             {dateMethods.getToday().year}
           </Typography>
           {data.map((transaction) => (
             <div
-              className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm"
+              className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm shadow-lg hover:cursor-pointer"
               key={transaction.id}
+              onClick={(ev) => handleView( ev, transaction )}
             > 
               <span className="flex items-center m-2">
                 <p className="text-2xl mr-2">
@@ -86,8 +83,8 @@ const TransactionList = (props) => {
                   <p
                     className={
                       transaction.amount >= 0.0
-                        ? "text-green-500"
-                        : "text-red-400"
+                        ? "text-green-600 font-bold"
+                        : "text-red-600 font-bold"
                     }
                   >
                     R$ {transaction.amount.toFixed(2)}
@@ -95,17 +92,7 @@ const TransactionList = (props) => {
                 </article>
               </span>
               <span className="flex gap-2">
-                <button
-                  className="bg-green-400 text-terciary px-2 py-1 rounded-full hover:bg-green-500 mr-2"
-                  onClick={(ev) => handleView(ev, transaction)}
-                >
-                  <img
-                    src={detailsIcon}
-                    alt="right_arrow"
-                    width={24}
-                    height={24}
-                  />
-                </button>
+                
               </span>
             </div>
           ))}

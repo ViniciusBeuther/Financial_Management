@@ -7,8 +7,9 @@ import creditCardIcon from "../../assets/icons/credit card icon.svg"
 
 const AccountInfo = (props) => {
   const [balance, setBalance] = useState(0.0);
+  const [creditCard, setCreditCard] = useState(0.0);
 
-  // Function to calculate the actual balance
+  // Function to calculate the current balance
   function calculateCurrentBalance() {
     let totalBalance = 0.0;
     props.database.forEach((record) => {
@@ -17,17 +18,31 @@ const AccountInfo = (props) => {
     return totalBalance;
   }
 
+  // Function to calculate the credit card 
+  function calculateCurrentCreditCard() {
+    let creditCardAmount = 0.0;
+    props.database.forEach((record) => {
+      console.log(record)
+      if( record.paymentMethod == "credit" && record.type == "S" ){
+        creditCardAmount = creditCard + record.amount;
+        console.log(creditCardAmount)
+      }
+    });
+    return creditCardAmount;
+  }
+
   // Update balance when props.database changes
   useEffect(() => {
     if (props.database != null) {
       setBalance(calculateCurrentBalance().toFixed(2));
+      setCreditCard(calculateCurrentCreditCard().toFixed(2));
     }
   }, [props.database]);
 
   return (
     <>
       <article className="flex items-center justify-between text-solidGray-100">
-          <div className="text-center flex items-center justify-start gap-2 w-full bg-solidPurple-300 border-solidPurple-700 border-s-2 m-2 p-2 rounded-lg">
+          <div className="text-center flex items-center justify-start gap-2 w-full darkPurpleGradient shadow-lg border-solidPurple-300 border-[1px] m-2 p-2 rounded-lg">
             <div className="bg-solidPurple-500 flex items-center justify-center p-3 rounded-lg">
               <img src={moneyIcon} alt="money-icon" width={32} height={32} className="" />
             </div>
@@ -42,7 +57,7 @@ const AccountInfo = (props) => {
             </div>
           </div>
 
-          <div className="text-center flex items-center justify-start w-full bg-solidPurple-300 border-solidPurple-700 border-s-2 m-2 p-2 rounded-lg">
+          <div className="text-center flex items-center justify-start w-full darkPurpleGradient shadow-lg border-solidPurple-300 border-[1px] m-2 p-2 rounded-lg">
             <div className="bg-solidPurple-500 flex items-center justify-center p-3 rounded-lg">
               <img src={creditCardIcon} alt="credit-card-icon" width={32} height={32} />
             </div>
@@ -53,7 +68,7 @@ const AccountInfo = (props) => {
                 variant="h5"
                 className="accountInfo__container_balance text-solidGray-100 tracking-tight"
               >
-                ${balance.toLocaleString()}
+                ${creditCard.toLocaleString()}
               </Typography>
             </div>
           </div>
