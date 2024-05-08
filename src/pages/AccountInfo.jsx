@@ -13,23 +13,30 @@ const AccountInfo = (props) => {
   function calculateCurrentBalance() {
     let totalBalance = 0.0;
     props.database.forEach((record) => {
-      totalBalance += record.amount;
+      if ( ( record.payment_method == 'pix' || record.payment_method == 'debit' ) && record.type == 'E' ){
+        totalBalance += record.amount;
+      }
+      
+      else if( ( record.payment_method == 'pix' || record.payment_method == 'debit' ) && record.type == 'S' ){
+        totalBalance -= record.amount;
+      }
     });
     return totalBalance;
   }
 
-  // Function to calculate the credit card 
-  function calculateCurrentCreditCard() {
-    let creditCardAmount = 0.0;
-    props.database.forEach((record) => {
-      console.log(record)
-      if( record.paymentMethod == "credit" && record.type == "S" ){
-        creditCardAmount = creditCard + record.amount;
-        console.log(creditCardAmount)
-      }
-    });
-    return creditCardAmount;
-  }
+
+// Function to calculate the credit card balance
+function calculateCurrentCreditCard() {
+  
+  let creditCardAmount = 0.0;
+  props.database.forEach((record) => {
+    if (record.payment_method == "credit" && record.type == 'S') {
+      creditCardAmount += record.amount;
+    }
+  });
+  return creditCardAmount;
+}
+
 
   // Update balance when props.database changes
   useEffect(() => {
@@ -66,7 +73,7 @@ const AccountInfo = (props) => {
               <Typography><strong>Fatura:</strong></Typography>
               <Typography
                 variant="h5"
-                className="accountInfo__container_balance text-solidGray-100 tracking-tight"
+                className="accountInfo__container_balance text-red-400 tracking-tight"
               >
                 ${creditCard.toLocaleString()}
               </Typography>
