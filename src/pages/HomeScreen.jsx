@@ -24,7 +24,7 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <div className="h-[100vh] flex items-between justify-center flex-col">
+    <div className="h-[100vh] flex items-between justify-center flex-col ">
       <section className="overflow-hidden flex flex-col flex-1">
         <Header />
         <AccountInfo database={data} />

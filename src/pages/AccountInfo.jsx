@@ -4,17 +4,22 @@ import TransactionList from "../Components/TransactionList";
 import ActionButtons from "../Components/ActionButtons";
 import moneyIcon from "../../assets/icons/money icon.svg"
 import creditCardIcon from "../../assets/icons/credit card icon.svg"
+import DateMethods from "../classes/Date";
 
 const AccountInfo = (props) => {
   const [balance, setBalance] = useState(0.0);
   const [creditCard, setCreditCard] = useState(0.0);
+  const dateMethods = new DateMethods()
 
   // Function to calculate the current balance
   function calculateCurrentBalance() {
     let totalBalance = 0.0;
     props.database.forEach((record) => {
-      if ( ( record.payment_method == 'pix' || record.payment_method == 'debit' ) && record.type == 'E' ){
-        totalBalance += record.amount;
+      if ( ( record.payment_method == 'pix' || record.payment_method == 'debit' ) && record.type == 'E'){
+        
+        if ( record.date == dateMethods.getMonthFrom( dateMethods.getToday() ) ){
+          totalBalance += record.amount;
+        }
       }
       
       else if( ( record.payment_method == 'pix' || record.payment_method == 'debit' ) && record.type == 'S' ){

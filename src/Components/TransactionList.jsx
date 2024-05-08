@@ -54,7 +54,7 @@ const TransactionList = (props) => {
   }
 
   return (
-    <div className="mt-5 h-full rounded-t-2xl darkPurpleGradient">
+    <div className="mt-5 h-full rounded-t-2xl darkPurpleGradient overflow-y-auto">
       {data ? (
         <div className="flex flex-col">
           <Typography
@@ -69,7 +69,7 @@ const TransactionList = (props) => {
           </Typography>
           {data.map((transaction) => (
             <div
-              className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm shadow-lg hover:cursor-pointer"
+              className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm shadow-lg hover:cursor-pointer "
               key={transaction.id}
               onClick={(ev) => handleView( ev, transaction )}
             > 
