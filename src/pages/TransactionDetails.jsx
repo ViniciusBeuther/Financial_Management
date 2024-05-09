@@ -70,7 +70,7 @@ async function handleDelete(ev) {
         </Typography>
       </div>
       <section className="bg-terciary flex items-start justify-center flex-col px-2 py-5">
-
+    {console.log( data )}
         <Typography variant="h6">
           {" "}
           <strong>Id:</strong> {data[0].id}{" "}

@@ -1,4 +1,5 @@
 class DateMethods {
+    // [months integer, month in MMM]
     monthsDictionary = [
         { code: "01", fullname: "Jan" },
         { code: "02", fullname: "Fev" },
@@ -14,17 +15,18 @@ class DateMethods {
         { code: "12", fullname: "Dez" },
     ]
 
-    // get today's date, return an object
+    // get today's date, return an object with day, month and year
     getToday(){
         const todayObj = {
             "year": new Date().getFullYear(),
-            "month": new Date().getMonth(),
+            "month": new Date().getMonth() + 1,
             "day": new Date().getDay(),
         }
+        //console.log( todayObj )
         return todayObj;
     }
 
-    // get the month from a date formatted as yyyy-mm-dd
+    // get the month from a date formatted as yyyy-mm-dd, return in format "mmm"
     getMonthFrom(month) {
         try {
             const monthObj = this.monthsDictionary.find((fullMonth) => fullMonth.code == month+1);
@@ -34,6 +36,19 @@ class DateMethods {
             return "Algo deu errado...";
         }
     }    
+
+    // date should de in the following format ( yyyy-mm-dd ), return an integer        
+    getMonthToNumericRepresentation(date) {
+        const splittedDate = date.split('-');
+        const dateObj = {
+            year: splittedDate[0],
+            month: splittedDate[1] * 1,
+            day: splittedDate[2],
+        }
+        //console.log("numeric", dateObj)
+
+        return dateObj;
+    }
 
 }
 
