@@ -37,38 +37,38 @@ const DialogDefault = (props) => {
   
   return (
     <>
-      <Button onClick={handleOpen} variant="contained" color="success" >
+      <button onClick={handleOpen} className="bg-green-400 px-4 py-2 rounded-lg text-solidPurple-1000 font-bold hover:bg-green-600 shadow-md" >
         Editar
-      </Button>
+      </button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
-          <div>
-            <Typography variant="h3" textAlign={"center"}>Editar Dados</Typography>
+          <div className="">
+            <Typography variant="h3" className="text-solidPurple-1000" textAlign={"center"}>Editar Dados</Typography>
               <form action="submit">
 
-                <article className="py-3 px-2 mb-5 mt-5 bg-terciary rounded-lg flex items-end justify-end">
-                  <label htmlFor="value" className="w-[60%]">
-                    Novo Valor: 
+                <article className="py-3 px-2 mb-5 mt-5 bg-solidPurple-100 rounded-lg flex items-center justify-end">
+                  <label htmlFor="value" className="w-[60%] text-solidPurple-1000 font-bold">
+                    Novo R$: 
                   </label>
-                  <Input id="updateForm__amount" type="number" variant="static" placeholder="R$" className="px-2 w-full" value={updatedAmount} onChange={(ev) => setUpdatedAmount(ev.target.value)} />
+                  <Input id="updateForm__amount" type="number" variant="static" placeholder="R$" className="px-2 w-full text-center" value={updatedAmount} onChange={(ev) => setUpdatedAmount(ev.target.value)} />
                 </article>
 
-                <article className="py-3 px-2 mb-5 bg-terciary rounded-lg flex items-end justify-end">
-                  <label htmlFor="value" className="w-[60%]">
-                    Nova descrição: 
+                <article className="py-3 px-2 mb-5 bg-solidPurple-100 rounded-lg flex items-center justify-end">
+                  <label htmlFor="value" className="w-[60%] text-solidPurple-1000 font-bold">
+                    Descrição: 
                   </label>
                   <Input id="updateForm__description" variant="static" value={updatedDescription} onChange={(ev) => setUpdatedDescription(ev.target.value)} className="px-2 w-full" />
                 </article>
 
                 <div className="flex items-center justify-end gap-3">
 
-                  <Button onClick={handleClose} color="error" variant="contained">
+                  <button onClick={handleClose} className="bg-red-400 px-4 py-2 rounded-lg text-solidPurple-950 font-bold hover:bg-red-500 shadow-md">
                     Cancelar
-                  </Button>
+                  </button>
 
-                  <Button onClick={(ev) => handleSave(ev)} color="success" variant="contained">
+                  <button onClick={(ev) => handleSave(ev)} className="bg-green-400 px-4 py-2 rounded-lg text-solidPurple-1000 font-bold hover:bg-green-600 shadow-md" >
                     Salvar
-                  </Button>
+                  </button>
                 
                 </div>
               </form>

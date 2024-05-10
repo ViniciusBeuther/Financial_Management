@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../utils/supabase";
 import { Button, Typography } from "@mui/material";
 import methods from "../classes/Util";
-import BackButton from "../Components/BackButton";
 import { IoIosArrowBack } from "react-icons/io";
 import DialogDefault from "../Components/DialogDefault";
 
@@ -61,15 +60,15 @@ async function handleDelete(ev) {
 
   return (
     <article className="">
-      <div className="bg-primary p-3 flex items-center flex-start w-full">
+      <div className="p-3 mb-5 flex items-center flex-start w-full">
         <Link to={"/"}>
-          <IoIosArrowBack className="bg-secundary text-primary w-8 h-8 rounded-full mr-5" />
+          <IoIosArrowBack className="text-solidPurple-100 w-10 h-10 rounded-full mr-2" />
         </Link>
-          <Typography variant="h4" className="text-center text-secundary">
+          <Typography variant="h4" className="text-center text-solidPurple-100">
           Detalhes
         </Typography>
       </div>
-      <section className="bg-terciary flex items-start justify-center flex-col px-2 py-5">
+      <section className="text-white purpleGlass flex items-start justify-center flex-col mx-3 px-2 py-5">
     {console.log( data )}
         <Typography variant="h6">
           {" "}
@@ -97,9 +96,8 @@ async function handleDelete(ev) {
           <strong>Valor:</strong> R$ {data[0].amount.toFixed(2)}
         </Typography>
 
-        <article className="flex items-center justify-center w-full gap-5">
-          <Button color="error" variant="contained" onClick={(ev) => handleDelete(ev)}>Remover</Button>
-        
+        <article className="flex mt-5 items-center justify-center w-full gap-5">
+          <button className="bg-red-400 px-4 py-2 rounded-lg text-solidPurple-950 font-bold hover:bg-red-500 shadow-md" onClick={(ev) => handleDelete(ev)}>Remover</button>
         
         <DialogDefault data={ data } />
         </article>
