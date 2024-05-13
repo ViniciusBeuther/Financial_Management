@@ -48,7 +48,7 @@ class DateMethods {
         //console.log("numeric", dateObj)
 
         return dateObj;
-    }
+    } 
 
 }
 

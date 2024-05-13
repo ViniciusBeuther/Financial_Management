@@ -66,7 +66,7 @@ const DialogDefault = (props) => {
                     Cancelar
                   </button>
 
-                  <button onClick={(ev) => handleSave(ev)} className="bg-green-400 px-4 py-2 rounded-lg text-solidPurple-1000 font-bold hover:bg-green-600 shadow-md" >
+                  <button onClick={(event) => handleSave(event)} className="bg-green-400 px-4 py-2 rounded-lg text-solidPurple-1000 font-bold hover:bg-green-600 shadow-md" >
                     Salvar
                   </button>
                 
