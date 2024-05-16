@@ -78,23 +78,23 @@ const AddFormScreen = () => {
   };
 
   return (
-    <section className="bg-secundary">
+    <section className="purpleGlass">
       <article className="w-full p-2">
         <div className="flex items-center">
-          <Link to={"/"} className="p-3 bg-primary text-white rounded-full">
-            <IoIosArrowBack />
+          <Link to={"/"}>
+            <IoIosArrowBack className="text-solidPurple-100 w-10 h-10 rounded-full mr-2" />
           </Link>
-          <Typography className="text-primary p-2 text-center" variant="h4">
+          <Typography className="text-solidPurple-100 text-center" variant="h4">
             Receita
           </Typography>
         </div>
 
-        <form onSubmit={(ev) => handleSubmit(ev)} className="flex flex-col gap-2">
-          <label className="text-primary text-xl">Categoria</label>
+        <form onSubmit={(ev) => handleSubmit(ev)} className="flex flex-col gap-2 text-solidPurple-100">
+          <label className="text-xl">Categoria</label>
 
           <Select
             label="Categoria"
-            className="bg-white text-primary w-full rounded-lg"
+            className="bg-white text-solidPurple-100 w-full rounded-lg"
             id="form__category"
             value={selectedInput}
             onChange={(ev) => setSelectedInput(ev.target.value)}
@@ -109,7 +109,7 @@ const AddFormScreen = () => {
 
           {/* Amount input */}
           <div className="flex flex-col">
-            <label className="text-primary text-xl">Valor</label>
+            <label className="text-xl">Valor</label>
             <div className="flex items-center">
               <FaBrazilianRealSign className="absolute left-5 text-green-500" />
               <input
@@ -130,7 +130,7 @@ const AddFormScreen = () => {
           {/* Date */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-around text-primary">
             <article>
-              <label className="text-primary text-xl">Data</label>
+              <label className="text-solidPurple-100 text-xl">Data</label>
               <div className="">
                 <input
                   type="date"
@@ -147,7 +147,7 @@ const AddFormScreen = () => {
 
           {/* Description input */}
           <div className="mb-2">
-            <label className="text-primary text-xl">Descrição (opcional)</label>
+            <label className="text-solidPurple-100 text-xl">Descrição (opcional)</label>
             <input
               type="text"
               name="form__textarea"
@@ -158,9 +158,11 @@ const AddFormScreen = () => {
             />
           </div>
 
-          <Button variant="contained" size="large" color="success" type="submit">
+          <button 
+            className="bg-green-400 px-4 py-2 rounded-lg text-solidPurple-1000 font-bold hover:bg-green-600 shadow-md mb-5"
+          >
             Adicionar
-          </Button>
+          </button>
         </form>
       </article>
     </section>
