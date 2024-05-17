@@ -1,35 +1,35 @@
 class DateMethods {
     // [months integer, month in MMM]
     monthsDictionary = [
-        { code: "01", fullname: "Jan" },
-        { code: "02", fullname: "Fev" },
-        { code: "03", fullname: "Mar" },
-        { code: "04", fullname: "Abr" },
-        { code: "05", fullname: "Mai" }, 
-        { code: "06", fullname: "Jun" },
-        { code: "07", fullname: "Jul" },
-        { code: "08", fullname: "Ago" },
-        { code: "09", fullname: "Set" },
-        { code: "10", fullname: "Out" },
-        { code: "11", fullname: "Nov" },
-        { code: "12", fullname: "Dez" },
+        { code: "0", fullname: "Jan" },
+        { code: "1", fullname: "Fev" },
+        { code: "2", fullname: "Mar" },
+        { code: "3", fullname: "Abr" },
+        { code: "4", fullname: "Mai" }, 
+        { code: "5", fullname: "Jun" },
+        { code: "6", fullname: "Jul" },
+        { code: "7", fullname: "Ago" },
+        { code: "8", fullname: "Set" },
+        { code: "9", fullname: "Out" },
+        { code: "10", fullname: "Nov" },
+        { code: "11", fullname: "Dez" },
     ]
 
     // get today's date, return an object with day, month and year
     getToday(){
         const todayObj = {
             "year": new Date().getFullYear(),
-            "month": new Date().getMonth() + 1,
+            "month": new Date().getMonth(),
             "day": new Date().getDay(),
         }
-        //console.log( todayObj )
+        // console.log( "today", todayObj.month )
         return todayObj;
     }
 
     // get the month from a date formatted as yyyy-mm-dd, return in format "mmm"
     getMonthFrom(month) {
         try {
-            const monthObj = this.monthsDictionary.find((fullMonth) => fullMonth.code == month+1);
+            const monthObj = this.monthsDictionary.find((fullMonth) => fullMonth.code == month);
             return monthObj ? monthObj.fullname : "Mês não encontrado";
         } catch (error) {
             console.log("Algo deu errado...", error);
@@ -45,7 +45,7 @@ class DateMethods {
             month: splittedDate[1] * 1,
             day: splittedDate[2],
         }
-        //console.log("numeric", dateObj)
+        // console.log("numeric", dateObj.month)
 
         return dateObj;
     } 

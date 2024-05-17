@@ -18,16 +18,18 @@ const AccountInfo = (props) => {
       if (
         record.payment_method == "pix" &&
         record.type == "E" &&
-        dateMethods.getMonthToNumericRepresentation(record.date).month == dateMethods.getToday().month ) {
-          
-          totalBalance += record.amount;
-          
-      } else if ( 
+        dateMethods.getMonthToNumericRepresentation(record.date).month ==
+          dateMethods.getToday().month + 1
+      ) {
+        totalBalance += record.amount;
+      } else if (
         record.payment_method != "credit" &&
         record.type == "S" &&
-        dateMethods.getMonthToNumericRepresentation(record.date).month == dateMethods.getToday().month ){
-          totalBalance -= record.amount * -1;
-        }
+        dateMethods.getMonthToNumericRepresentation(record.date).month ==
+          dateMethods.getToday().month + 1
+      ) {
+        totalBalance -= record.amount * -1;
+      }
     });
     return totalBalance;
   }
@@ -36,7 +38,12 @@ const AccountInfo = (props) => {
   function calculateCurrentCreditCard() {
     let creditCardAmount = 0.0;
     props.database.forEach((record) => {
-      if (record.payment_method == "credit" && record.type == "S") {
+      if (
+        record.payment_method == "credit" &&
+        record.type == "S" &&
+        dateMethods.getMonthToNumericRepresentation(record.date).month ==
+          dateMethods.getToday().month
+      ) {
         creditCardAmount += record.amount;
       }
     });

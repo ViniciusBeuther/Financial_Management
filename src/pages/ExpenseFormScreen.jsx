@@ -227,7 +227,7 @@ const ExpenseFormScreen = () => {
                   name="amount"
                   id="addform__amount"
                   placeholder="0.00"
-                  className="pl-8 pr-2 py-4 rounded-lg w-full bg-white"
+                  className="pl-8 pr-2 py-4 rounded-lg w-full text-solidPurple-950 bg-white"
                 />
               </div>
             </div>
@@ -252,15 +252,15 @@ const ExpenseFormScreen = () => {
                 <label className="text-xl">Tipo de pagamento</label>
                 <RadioGroup value={selectedValue} onChange={handleChange}  >
                   <div className="text-lg">
-                    <Radio value="pix" />
+                    <Radio value="pix" color="success" />
                     <label htmlFor="pix">PIX</label>
                   </div>
                   <div className="text-lg">
-                    <Radio value="debit" />
+                    <Radio value="debit" color="success" />
                     <label htmlFor="debit">Débito</label>
                   </div>
                   <div className="text-lg">
-                    <Radio value="credit" />
+                    <Radio value="credit" color="success" />
                     <label htmlFor="credit">Crédito</label>
                   </div>
                 </RadioGroup>
@@ -274,7 +274,7 @@ const ExpenseFormScreen = () => {
                 type="text"
                 name="addform__textarea"
                 id="addform__textarea"
-                className="p-4 w-full rounded-md"
+                className="p-4 w-full rounded-md text-solidPurple-950"
               />
             </div>
   

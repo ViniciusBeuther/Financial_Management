@@ -120,7 +120,7 @@ const AddFormScreen = () => {
                 name="amount"
                 id="form__amount"
                 placeholder="0.00"
-                className="pl-8 pr-2 py-4 rounded-lg w-full bg-white"
+                className="pl-8 pr-2 text-solidPurple-950 py-4 rounded-lg w-full bg-white"
                 value={amount}
                 onChange={(ev) => setAmount(ev.target.value)}
               />
@@ -137,7 +137,7 @@ const AddFormScreen = () => {
                   name="amount"
                   id="form__date"
                   placeholder="0.00"
-                  className="p-4 rounded-lg w-full bg-white"
+                  className="p-4 rounded-lg w-full text-black bg-white"
                   value={date}
                   onChange={(ev) => setDate(ev.target.value)}
                 />
@@ -152,7 +152,7 @@ const AddFormScreen = () => {
               type="text"
               name="form__textarea"
               id="form__textarea"
-              className="p-4 w-full rounded-md"
+              className="p-4 w-full text-black rounded-md"
               value={description}
               onChange={(ev) => setDescription(ev.target.value)}
             />

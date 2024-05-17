@@ -22,7 +22,8 @@ body, html{
 }
 
 .darkPurpleGradient{
-  background-image: linear-gradient(to top, #641b6e, #5f1e68, #5a2063, #56225d, #512458);
+  /*background-image: linear-gradient(to top, #641b6e, #5f1e68, #5a2063, #56225d, #512458);*/
+  background-color: rgba(215, 161, 244, 0.395);
 }
 
 .purpleGlass{
