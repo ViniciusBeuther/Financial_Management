@@ -39,3 +39,10 @@ body, html{
 .transactionCard {
   background-color: #fdccffb0;
 }
+
+.titleGradient{
+  background: #F9F9F9;
+  background: linear-gradient(to left, #F9F9F9 0%, #FA82FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

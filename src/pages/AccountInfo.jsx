@@ -37,12 +37,14 @@ const AccountInfo = (props) => {
   // Function to calculate the credit card balance
   function calculateCurrentCreditCard() {
     let creditCardAmount = 0.0;
+    
     props.database.forEach((record) => {
+      
       if (
         record.payment_method == "credit" &&
         record.type == "S" &&
         dateMethods.getMonthToNumericRepresentation(record.date).month ==
-          dateMethods.getToday().month
+          dateMethods.getToday().month + 1
       ) {
         creditCardAmount += record.amount;
       }
@@ -100,7 +102,7 @@ const AccountInfo = (props) => {
             </Typography>
             <Typography
               variant="h5"
-              className="accountInfo__container_balance text-red-400 tracking-tight"
+              className="accountInfo__container_balance text-white tracking-tight"
             >
               ${creditCard.toLocaleString()}
             </Typography>

@@ -37,7 +37,7 @@ class DateMethods {
         }
     }    
 
-    // date should de in the following format ( yyyy-mm-dd ), return an integer        
+    // date should be in the following format ( yyyy-mm-dd ), return an integer        
     getMonthToNumericRepresentation(date) {
         const splittedDate = date.split('-');
         const dateObj = {
