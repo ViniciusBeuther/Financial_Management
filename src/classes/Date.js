@@ -26,7 +26,7 @@ class DateMethods {
         return todayObj;
     }
 
-    // get the month from a date formatted as yyyy-mm-dd, return in format "mmm"
+    // get the month from a date formatted as yyyy-mm-dd, return in format "mmm", like month 01 = jan
     getMonthFrom(month) {
         try {
             const monthObj = this.monthsDictionary.find((fullMonth) => fullMonth.code == month);
