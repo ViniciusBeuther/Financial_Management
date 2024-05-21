@@ -28,9 +28,11 @@ const TransactionList = (props) => {
         const currentMonthTransactions = allTransactions.filter(
           (transaction) => {
             const transactionDate = new Date(transaction.date);
+            console.log("TransList", transactionDate.getMonth()+1)
+            console.log("Transaction", transaction)
             return (
-              transactionDate.getMonth() + 1 === currentMonth &&
-              transactionDate.getFullYear() === currentYear
+              transactionDate.getMonth() + 1 == currentMonth &&
+              transactionDate.getFullYear() == currentYear
             );
           }
         );
@@ -67,35 +69,39 @@ const TransactionList = (props) => {
             {dateMethods.getMonthFrom(dateMethods.getToday().month)},{" "}
             {dateMethods.getToday().year}
           </Typography>
-          {data.map((transaction) => (
-            <div
-              className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm shadow-lg hover:cursor-pointer "
-              key={transaction.id}
-              onClick={(ev) => handleView( ev, transaction )}
-            > 
-              <span className="flex items-center m-2">
-                <p className="text-2xl mr-2">
-                  { transaction.emoji }
-                </p>
-
-                <article className="flex flex-col items-start ">
-                  <p className={"text-black"}>{transaction.category}</p>
-                  <p
-                    className={
-                      transaction.amount >= 0.0
-                        ? "text-green-600 font-bold"
-                        : "text-red-600 font-bold"
-                    }
-                  >
-                    R$ {transaction.amount.toFixed(2)}
+          {console.log(data)}
+          {data == '' ? (<p>Sem transações esse mês</p>) : (
+            data.map((transaction) => (
+              <div
+                className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm shadow-lg hover:cursor-pointer "
+                key={transaction.id}
+                onClick={(ev) => handleView( ev, transaction )}
+              > 
+                <span className="flex items-center m-2">
+                  <p className="text-2xl mr-2">
+                    { transaction.emoji }
                   </p>
-                </article>
-              </span>
-              <span className="flex gap-2">
-                
-              </span>
-            </div>
-          ))}
+  
+                  <article className="flex flex-col items-start ">
+                    <p className={"text-black"}>{transaction.category}</p>
+                    <p
+                      className={
+                        transaction.amount >= 0.0
+                          ? "text-green-600 font-bold"
+                          : "text-red-600 font-bold"
+                      }
+                    >
+                      R$ {transaction.amount.toFixed(2)}
+                    </p>
+                  </article>
+                </span>
+                <span className="flex gap-2">
+                  
+                </span>
+              </div>
+            ))
+          ) }
+          
         </div>
       ) : (
         <p>Loading</p>
