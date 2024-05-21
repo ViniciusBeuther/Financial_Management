@@ -7,6 +7,7 @@ import expanseIcon from "../../assets/icons/expanse arrow.svg";
 import incomeIcon from "../../assets/icons/income arrow.svg";
 import detailsIcon from "../../assets/icons/details arrow icon.svg";
 import DateMethods from "../classes/Date";
+import Spinner from "./Spinner";
 
 const TransactionList = (props) => {
   const [data, setData] = useState();
@@ -104,7 +105,7 @@ const TransactionList = (props) => {
           
         </div>
       ) : (
-        <p>Loading</p>
+        <Spinner />
       )}
     </div>
   );
