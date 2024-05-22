@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeScreen from "./pages/HomeScreen";
 import AddFormScreen from "./pages/AddFormScreen";
-import ReportScreen from "./pages/ReportScreen";
 import ExpenseFormScreen from "./pages/ExpenseFormScreen";
 import TransactionDetails from "./pages/TransactionDetails";
+import AnalysisScreen from "./pages/AnalysisScreen/AnalysisScreen";
 
 const router = createBrowserRouter([
     {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <ExpenseFormScreen />
     },
     {
-        path: "/report",
-        element: <ReportScreen />
+        path: "/analysis",
+        element: <AnalysisScreen />
     },
     {
         path: "/details/:transaction_id",
