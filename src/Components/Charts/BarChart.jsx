@@ -1,9 +1,9 @@
 const BarChart = () => {
     return(
         <>
-            <p>Bar chart</p>
+            CHART
         </>
     )
 }
 
-export default BarChart
+export default BarChart;

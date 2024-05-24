@@ -20,10 +20,10 @@ const AnalysisScreen = () => {
       </Link>
 
       <div className="bg-white rounded-lg shadow-lg m-5 py-5 flex flex-col gap-5">
-        { isShowingChart ? <BarChart /> : <AnalysisForm /> } 
+        { isShowingChart ? <canvas id="barChart"> <BarChart /> </canvas> : <AnalysisForm /> } 
         <Button
           bgColor={"solidPurple-300"}
-          text={"Gerar Relatório"}
+          text={ isShowingChart ? "Voltar" : "Gerar Relatório"}
           textColor={"white"}
           hoverColor={"solidPurple-700"}
           onClick={handleClick}
