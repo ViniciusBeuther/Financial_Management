@@ -12,8 +12,15 @@ const BarChart = () => {
     const [chartData, setChartData] = useState(null);
     const chartRef = useRef(null);
     const [arrayOfObj, setArrayOfObj] = useState([]);
-    const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1); // Mês atual
-    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear()); // Ano atual
+    const dateMethods = new DateMethods()
+    const elementMonth = document.getElementById("analysis__select_month");
+    const elementYear = document.getElementById("analysis__select_year");
+    const [selectedMonth, setSelectedMonth] = useState();
+    const [selectedYear, setSelectedYear] = useState();
+    //console.log(selectedMonth+1)
+    //console.log(selectedYear)
+    
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,11 +31,14 @@ const BarChart = () => {
                 
                 if (error) throw error;
 
+                setSelectedMonth(dateMethods.getMMMmonth(elementMonth.innerText)+1)
+                setSelectedYear(elementYear.innerText)
+
                 const filteredTransactions = transactions.filter((transaction) => {
                     const transactionDate = new Date(transaction.date);
                     const transactionMonth = transactionDate.getMonth() + 1;
                     const transactionYear = transactionDate.getFullYear();
-                    return transactionMonth === selectedMonth && transactionYear === selectedYear;
+                    return transactionMonth == selectedMonth && transactionYear == selectedYear;
                 });
 
                 const newArrayOfObj = filteredTransactions.map((transaction) => ({

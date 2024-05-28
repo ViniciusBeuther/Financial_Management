@@ -18,7 +18,7 @@ class DateMethods {
   getMMMmonth(monthInMMM) {
     for (let obj of this.monthsDictionary) {
       if (obj.fullname.toLowerCase() == monthInMMM) {
-        return obj.code;
+        return parseInt(obj.code);
       }
     }
   }
