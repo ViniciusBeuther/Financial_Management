@@ -19,8 +19,8 @@ const AnalysisForm = () => {
   return (
     <div>
       <section>
-        <SelectInput label={"Selecionar Mês: "} list={months} />
-        <SelectInput label={"Selecionar Ano: "} list={["2023", "2024"]} />
+        <SelectInput label={"Selecionar Mês: "} id={"analysis__select_month"} list={months} />
+        <SelectInput label={"Selecionar Ano: "} id={"analysis__select_year"} list={["2023", "2024"]} />
       </section>
     </div>
   );
