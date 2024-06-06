@@ -71,7 +71,7 @@ const TransactionList = (props) => {
             {dateMethods.getToday().year}
           </Typography>
           {console.log(data)}
-          {data == '' ? (<p>Sem transações esse mês</p>) : (
+          {data == '' ? (<p className="text-solidPurple-100 text-center mt-2">Sem transações esse mês &#128533;</p>) : (
             data.map((transaction) => (
               <div
                 className="flex items-center justify-between transactionCard py-2 my-1 mx-2 rounded-md text-sm shadow-lg hover:cursor-pointer "

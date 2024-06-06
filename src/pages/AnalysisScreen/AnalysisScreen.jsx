@@ -33,21 +33,21 @@ const AnalysisScreen = () => {
       <Link to={"/"}>
         <IoIosArrowBack className="text-solidPurple-100 w-10 h-10 rounded-full mr-2 mt-2" />
       </Link>
-
       
-
       <div className="bg-white rounded-lg shadow-lg m-5 py-5 flex flex-col gap-5">
+
+            <SelectInput
+              label={"Selecionar Mês: "}
+              id={"analysis__select_month"}
+              list={months}
+            />
+            <SelectInput
+              label={"Selecionar Ano: "}
+              id={"analysis__select_year"}
+              list={["2023", "2024"]}
+            />
+
       <section>
-        <SelectInput
-          label={"Selecionar Mês: "}
-          id={"analysis__select_month"}
-          list={months}
-        />
-        <SelectInput
-          label={"Selecionar Ano: "}
-          id={"analysis__select_year"}
-          list={["2023", "2024"]}
-        />
       </section>
         {isShowingChart ? <BarChart key={isShowingChart} /> : null}
         <Button

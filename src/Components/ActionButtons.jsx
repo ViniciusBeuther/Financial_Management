@@ -18,9 +18,9 @@ const ActionButtons = () => {
                 </button>
             </Link>
 
-            <Link to={"/report"}>
-                {/* Active Button Style: bg-solidPurple-600 px-6 py-4 rounded-md shadow-md hover:bg-solidPurple-900 */}
-                <button className="bg-gray-400 px-6 py-4 rounded-md" disabled={true}>
+            <Link to={"/Analysis"}>
+                {/* Inact Button Style:  bg-gray-400 px-6 py-4 rounded-md */}
+                <button className="bg-solidPurple-950 px-6 py-4 rounded-md shadow-md hover:bg-solidPurple-800">
                     <HiOutlineDocumentReport  className="text-solidGray-100 size-5" />
                 </button>
             </Link>
