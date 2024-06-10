@@ -12,7 +12,7 @@ export default {
         terciary: "#F2EFDC",
         solidPurple: {
           100: '#FDCCFF',
-          200: '#FA82FF',
+          200: '#FA82FF', 
           300: '#D700F1',
           400: '#E524FF',
           500: '#90359E',

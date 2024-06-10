@@ -63,10 +63,10 @@ const BarChart = () => {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Transações por Categoria',
+                            label: 'Gastos (R$\)',
                             data: values,
-                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: '#FA82FF',
+                            borderColor: '#D700F1',
                             borderWidth: 1,
                         },
                     ],
@@ -81,9 +81,11 @@ const BarChart = () => {
     }, [selectedMonth, selectedYear]); // Reexecuta o efeito quando o mês ou ano selecionado mudar
 
     return (
-        <div>
+        <div className='w-full flex items-center justify-center'>
             {chartData ? (
-                <Bar ref={chartRef} data={chartData} />
+                <div className='max-w-[580px] w-full flex items-center justify-center'>
+                    <Bar ref={chartRef} data={chartData} />
+                </div>
             ) : (
                 <Spinner />
             )}
