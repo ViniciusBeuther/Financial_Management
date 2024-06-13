@@ -186,7 +186,7 @@ const ExpenseFormScreen = () => {
             <IoIosArrowBack className="text-solidPurple-100 w-10 h-10 rounded-full mr-2" />
           </Link>
           <Typography className="text-solidPurple-100 text-center" variant="h4">
-            Despezas
+            Despesas
           </Typography>
         </div>
   
