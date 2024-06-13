@@ -9,7 +9,7 @@ This repository is dedicated to the development of a Personal Finance Manager we
 * **Graphical Visualization:** Visualize spending in each category through interactive charts, helping users understand their financial habits over different periods.
 
 ## Technologies Used 🛠️
-* **ReactJS: **JavaScript library for building user interfaces.
+* **ReactJS:** JavaScript library for building user interfaces.
 * **TailwindCSS:** CSS framework for rapid and efficient styling.
 * **Chart.js:** JavaScript library for creating interactive and customizable charts.
 * **Day.js:** JavaScript library for parsing, validating, manipulating, and displaying dates.
